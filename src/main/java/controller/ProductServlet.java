@@ -26,7 +26,7 @@ public class ProductServlet extends HttpServlet {
                 showAllProducts(request, response);
                 break;
             case "create":
-                showNewForm(request, response);
+                showCreateProduct(request, response);
                 break;
             case "edit":
                 break;
@@ -42,8 +42,11 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showCreateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Product product = new Product();
+        List<>
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/create.jsp");
+        request.setAttribute("createProduct", product);
         requestDispatcher.forward(request, response);
     }
 
@@ -54,11 +57,8 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "":
-                showAllProducts(request, response);
-                break;
             case "create":
-                createProduct(request, response);
+                createNewProduct(request, response);
                 break;
             case "edit":
                 break;
@@ -67,8 +67,29 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    private void createNewProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int amount = Integer.parseInt(request.getParameter("amount"));
+        String color = request.getParameter("color");
+        String description = request.getParameter("description");
+        String[] manufacturerString = request.getParameterValues("manufacturer");
+        String[] shopString = request.getParameterValues("shop");
+        int[] manufacturer = new int[manufacturerString.length];
+        int[] shop = new int[shopString.length];
+        for (int i = 0; i < manufacturer.length; i++) {
+            manufacturer[i] = Integer.parseInt(manufacturerString[i]);
+        }
+        for (int i = 0; i < shop.length; i++) {
+            shop[i] = Integer.parseInt(shopString[i]);
+        }
+        Product product = new Product(name, price, amount, color, description);
+        productService.insert(product);
+        try {
+            response.sendRedirect("/products");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

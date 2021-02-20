@@ -18,7 +18,8 @@ public class ProductService implements IProductService {
         List<Product> products = new ArrayList<>();
         Connection connection = singletonConnection.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from product;");
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from product;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("product_id");
@@ -37,11 +38,25 @@ public class ProductService implements IProductService {
 
     @Override
     public void insert(Product product) {
-
+        Connection connection = singletonConnection.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "insert into product (nameProduct, price, amountProduct, colorProduct, description) values (?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setInt(3, product.getAmount());
+            preparedStatement.setString(4, product.getColor());
+            preparedStatement.setString(5, product.getDescription());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Product findById(int id) {
         return null;
     }
+
 }
+
