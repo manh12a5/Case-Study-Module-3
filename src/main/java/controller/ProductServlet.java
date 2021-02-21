@@ -43,7 +43,14 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request, response);
                 break;
+            case "login":
+                showLogin(request,response);
+                break;
         }
+    }
+
+    private void showLogin(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/login.jsp");
     }
 
     private void showAllProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
