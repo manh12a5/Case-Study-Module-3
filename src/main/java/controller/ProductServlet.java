@@ -19,10 +19,12 @@ import java.util.List;
 @WebServlet(name = "ProductServlet", value = "/products")
 public class ProductServlet extends HttpServlet {
 
+    //Tạo đối tượng
     IProductService productService = new ProductService();
     IManufacturerService manufacturerService = new ManufacturerService();
     IShopService shopService = new ShopService();
 
+    //Các phương thức Get
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -71,6 +73,7 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    //Các phương thức Post
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -92,17 +95,19 @@ public class ProductServlet extends HttpServlet {
         int amount = Integer.parseInt(request.getParameter("amount"));
         String color = request.getParameter("color");
         String description = request.getParameter("description");
-        String[] manufacturerString = request.getParameterValues("manufacturer");
-        String[] shopString = request.getParameterValues("shop");
-        int[] manufacturer = new int[manufacturerString.length];
-        int[] shop = new int[shopString.length];
-        for (int i = 0; i < manufacturer.length; i++) {
-            manufacturer[i] = Integer.parseInt(manufacturerString[i]);
-        }
-        for (int i = 0; i < shop.length; i++) {
-            shop[i] = Integer.parseInt(shopString[i]);
-        }
-        Product product = new Product(name, price, amount, color, description);
+        int manufacturer = Integer.parseInt(request.getParameter("manufacturer"));
+        int shop = Integer.parseInt(request.getParameter("shop"));
+//        String[] manufacturerString = request.getParameterValues("manufacturer");
+//        String[] shopString = request.getParameterValues("shop");
+//        int[] manufacturer = new int[manufacturerString.length];
+//        int[] shop = new int[shopString.length];
+//        for (int i = 0; i < manufacturer.length; i++) {
+//            manufacturer[i] = Integer.parseInt(manufacturerString[i]);
+//        }
+//        for (int i = 0; i < shop.length; i++) {
+//            shop[i] = Integer.parseInt(shopString[i]);
+//        }
+        Product product = new Product(name, price, amount, color, description, manufacturer, shop);
         productService.insert(product);
         try {
             response.sendRedirect("/products");

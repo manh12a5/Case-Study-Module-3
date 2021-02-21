@@ -8,6 +8,8 @@ public class Product {
     private int amount;
     private String color;
     private String description;
+    private int manufacturer;
+    private int shop;
 
     public Product() {
     }
@@ -27,6 +29,16 @@ public class Product {
         this.amount = amount;
         this.color = color;
         this.description = description;
+    }
+
+    public Product(String name, int price, int amount, String color, String description, int manufacturer, int shop) {
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.color = color;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.shop = shop;
     }
 
     public int getId() {
@@ -77,4 +89,19 @@ public class Product {
         this.description = description;
     }
 
+    public int getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(int manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public int getShop() {
+        return shop;
+    }
+
+    public void setShop(int shop) {
+        this.shop = shop;
+    }
 }

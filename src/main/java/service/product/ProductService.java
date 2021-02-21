@@ -39,12 +39,14 @@ public class ProductService implements IProductService {
     public void insert(Product product) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "insert into product (nameProduct, price, amountProduct, colorProduct, description) values (?, ?, ?, ?, ?)");
+                    "insert into product (nameProduct, price, amountProduct, colorProduct, description, manufacturer_id, shop_id) values (?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, product.getName());
             preparedStatement.setInt(2, product.getPrice());
             preparedStatement.setInt(3, product.getAmount());
             preparedStatement.setString(4, product.getColor());
             preparedStatement.setString(5, product.getDescription());
+            preparedStatement.setInt(6, product.getManufacturer());
+            preparedStatement.setInt(7, product.getShop());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
