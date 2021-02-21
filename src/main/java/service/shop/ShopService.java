@@ -1,6 +1,5 @@
 package service.shop;
 
-import model.Product;
 import model.Shop;
 import service.SingletonConnection;
 
@@ -25,7 +24,8 @@ public class ShopService implements IShopService {
                 String name = resultSet.getString("nameShop");
                 String address = resultSet.getString("address");
                 String phone = resultSet.getString("phoneNumber");
-                shops.add(new Shop(id, name, address, phone));
+                int accountId = resultSet.getInt("account_id");
+                shops.add(new Shop(id, name, address, phone,accountId));
             }
         } catch (Exception e) {
             e.printStackTrace();

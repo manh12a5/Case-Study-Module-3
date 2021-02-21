@@ -5,6 +5,15 @@ public class Shop {
     private String name;
     private String address;
     private String phoneNumber;
+    private int accountId;
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
 
     public Shop() {
     }
@@ -15,11 +24,12 @@ public class Shop {
         this.phoneNumber = phoneNumber;
     }
 
-    public Shop(int id, String name, String address, String phoneNumber) {
+    public Shop(int id, String name, String address, String phoneNumber, int accountId) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.accountId = accountId;
     }
 
     public int getId() {
