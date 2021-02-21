@@ -11,12 +11,11 @@ import java.util.List;
 
 public class ProductService implements IProductService {
 
-    SingletonConnection singletonConnection = new SingletonConnection();
+    Connection connection = SingletonConnection.getConnection();
 
     @Override
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
-        Connection connection = singletonConnection.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "select * from product;");
@@ -38,7 +37,6 @@ public class ProductService implements IProductService {
 
     @Override
     public void insert(Product product) {
-        Connection connection = singletonConnection.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "insert into product (nameProduct, price, amountProduct, colorProduct, description) values (?, ?, ?, ?, ?)");
@@ -58,5 +56,15 @@ public class ProductService implements IProductService {
         return null;
     }
 
+    @Override
+    public void delete(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from product where product_id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

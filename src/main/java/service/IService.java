@@ -10,4 +10,6 @@ public interface IService<E> {
 
     void insert(E e);
 
+    void delete(int id);
+
 }

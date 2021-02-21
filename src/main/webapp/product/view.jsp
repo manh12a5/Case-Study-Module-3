@@ -16,6 +16,13 @@
     <table border="1" cellpadding="5">
         <caption><h2>List of Product</h2></caption>
         <tr>
+            <div>
+                <a href="/products?action=create">
+                    <button>Thêm mới</button>
+                </a>
+            </div>
+        </tr>
+        <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>

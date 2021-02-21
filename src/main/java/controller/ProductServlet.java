@@ -1,8 +1,14 @@
 package controller;
 
+import model.Manufacturer;
 import model.Product;
+import model.Shop;
+import service.manufacturer.IManufacturerService;
+import service.manufacturer.ManufacturerService;
 import service.product.IProductService;
 import service.product.ProductService;
+import service.shop.IShopService;
+import service.shop.ShopService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,6 +20,8 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
 
     IProductService productService = new ProductService();
+    IManufacturerService manufacturerService = new ManufacturerService();
+    IShopService shopService = new ShopService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +39,7 @@ public class ProductServlet extends HttpServlet {
             case "edit":
                 break;
             case "delete":
+                deleteProduct(request, response);
                 break;
         }
     }
@@ -44,9 +53,21 @@ public class ProductServlet extends HttpServlet {
 
     private void showCreateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Product product = new Product();
-        List<>
+        List<Manufacturer> manufacturers = manufacturerService.findAll();
+        List<Shop> shops = shopService.findAll();
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/create.jsp");
-        request.setAttribute("createProduct", product);
+        request.setAttribute("product", product);
+        request.setAttribute("manufacturer", manufacturers);
+        request.setAttribute("shop", shops);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        productService.delete(id);
+        List<Product> products = productService.findAll();
+        request.setAttribute("product", products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/view.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -61,8 +82,6 @@ public class ProductServlet extends HttpServlet {
                 createNewProduct(request, response);
                 break;
             case "edit":
-                break;
-            case "delete":
                 break;
         }
     }
