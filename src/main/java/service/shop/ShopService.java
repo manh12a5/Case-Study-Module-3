@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShopService implements IShopService {
@@ -56,7 +57,17 @@ public class ShopService implements IShopService {
 
     @Override
     public void insert(Shop shop) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into shop values (?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, shop.getId());
+            preparedStatement.setString(2, shop.getName());
+            preparedStatement.setString(3, shop.getAddress());
+            preparedStatement.setString(4, shop.getPhoneNumber());
+            preparedStatement.setInt(5, shop.getAccountId());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -68,6 +79,24 @@ public class ShopService implements IShopService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public List<Integer> getAccountId() {
+        List<Integer> accountId = new ArrayList();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select account_id from account;");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("account_id");
+                accountId.add(id);
+            }
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return accountId;
     }
 
 }

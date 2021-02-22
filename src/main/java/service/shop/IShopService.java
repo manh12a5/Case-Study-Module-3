@@ -3,6 +3,8 @@ package service.shop;
 import model.Shop;
 import service.IService;
 
-public interface IShopService extends IService<Shop> {
+import java.util.List;
 
+public interface IShopService extends IService<Shop> {
+    List<Integer> getAccountId();
 }

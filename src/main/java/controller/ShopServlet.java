@@ -18,7 +18,18 @@ import java.util.List;
 public class ShopServlet extends HttpServlet {
     IShopService shopService = new ShopService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "":
+                createNewShop(request, response);
+                break;
+            case "delete":
+                deleteShop(request, response);
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,20 +41,17 @@ public class ShopServlet extends HttpServlet {
             case "":
                 showAllShop(request, response);
                 break;
-            case "create":
-//                showCreateShop(request, response);
-                break;
             case "edit":
                 break;
-            case "delete":
-                deleteShop(request, response);
-                break;
+
         }
     }
 
     private void showAllShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("shop/view.jsp");
         List<Shop> shopList = shopService.findAll();
+        List<Integer> accountId = shopService.getAccountId();
+        request.setAttribute("accountId", accountId);
         request.setAttribute("shop", shopList);
         requestDispatcher.forward(request, response);
     }
@@ -53,7 +61,17 @@ public class ShopServlet extends HttpServlet {
         shopService.delete(id);
         List<Shop> shopList = shopService.findAll();
         request.setAttribute("shop", shopList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("shop/view.jsp");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("/shop");
+    }
+
+    private void createNewShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("idShop"));
+        String name = request.getParameter("nameShop");
+        String address = request.getParameter("addressShop");
+        String phone = request.getParameter("phoneNumberShop");
+        int accountId = Integer.parseInt(request.getParameter("accountIdShop"));
+        Shop shop = new Shop(id, name, address, phone, accountId);
+        shopService.insert(shop);
+        response.sendRedirect("/shop");
     }
 }
