@@ -23,7 +23,7 @@ public class AccountServlet extends HttpServlet {
             request.setAttribute("mess","Wrong user or password!");
             request.getRequestDispatcher("product/login.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("product/view.jsp").forward(request, response);
+            response.sendRedirect("/products");
         }
     }
 

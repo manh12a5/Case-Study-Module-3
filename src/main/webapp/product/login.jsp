@@ -40,11 +40,11 @@
                        <p class="text-danger">${mess}</p>
                         <div class="form-group">
                             <label for="username" class="text-info">Username:</label><br>
-                            <input type="text" name="username" id="username" class="form-control">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="enter your email">
                         </div>
                         <div class="form-group">
                             <label for="password" class="text-info">Password:</label><br>
-                            <input type="password" name="password" id="password" class="form-control">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="enter your password">
                         </div>
                         <div class="form-group">
                             <label for="remember-me" class="text-info"><span>Remember me</span><span><input
