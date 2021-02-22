@@ -10,6 +10,7 @@ public class Product {
     private String description;
     private int manufacturer;
     private int shop;
+    private String image;
 
     public Product() {
     }
@@ -31,6 +32,16 @@ public class Product {
         this.description = description;
     }
 
+    public Product(int id, String name, int price, int amount, String color, String description, String image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.color = color;
+        this.description = description;
+        this.image = image;
+    }
+
     public Product(String name, int price, int amount, String color, String description, int manufacturer, int shop) {
         this.name = name;
         this.price = price;
@@ -39,6 +50,17 @@ public class Product {
         this.description = description;
         this.manufacturer = manufacturer;
         this.shop = shop;
+    }
+
+    public Product(String name, int price, int amount, String color, String description, int manufacturer, int shop, String image) {
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.color = color;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.shop = shop;
+        this.image = image;
     }
 
     public Product(int id, String name, int price, int amount, String color, String description, int manufacturer, int shop) {
@@ -50,6 +72,18 @@ public class Product {
         this.description = description;
         this.manufacturer = manufacturer;
         this.shop = shop;
+    }
+
+    public Product(int id, String name, int price, int amount, String color, String description, int manufacturer, int shop, String image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.color = color;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.shop = shop;
+        this.image = image;
     }
 
     public int getId() {
@@ -114,5 +148,13 @@ public class Product {
 
     public void setShop(int shop) {
         this.shop = shop;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
