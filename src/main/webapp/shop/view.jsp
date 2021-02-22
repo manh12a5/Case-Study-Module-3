@@ -26,6 +26,8 @@
                 <td>${p.getName()}</td>
                 <td>${p.getAddress()}</td>
                 <td>${p.getPhoneNumber()}</td>
+
+<%--                Edit--%>
                 <td>
                     <a href="/shop?action=edit&id=${p.getId()}" >Edit</a>
                 </td>
@@ -38,6 +40,8 @@
         </c:forEach>
     </table>
 </div>
+
+<%--Nút thêm mới--%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-container">
@@ -74,8 +78,8 @@
                         <tr>
                             <th>AccountId:</th>
                             <td>
-                                <c:forEach var="c" items="${accountId}">
-                                    <input type="radio" name="accountIdShop" value="${c}" >${c}<br>
+                                <c:forEach var="c" items="${nameAccount}">
+                                    <input type="radio" name="nameAccount" value="${c}" >${c}<br>
                                 </c:forEach>
                             </td>
                         </tr>

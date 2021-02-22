@@ -81,22 +81,37 @@ public class ShopService implements IShopService {
         }
     }
 
-
     @Override
-    public List<Integer> getAccountId() {
-        List<Integer> accountId = new ArrayList();
+    public int getAccountId(String name) {
+        int id = 0;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select account_id from account;");
+            PreparedStatement preparedStatement = connection.prepareStatement("select account_id from account where fullName = ?;");
+            preparedStatement.setString(1,name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("account_id");
-                accountId.add(id);
+                id = resultSet.getInt("account_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    @Override
+    public List<String> getNameAccount() {
+        List<String> nameAccount = new ArrayList();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select fullName from account;");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("fullName");
+                nameAccount.add(name);
             }
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return accountId;
+        return nameAccount;
     }
 
 }

@@ -6,5 +6,6 @@ import service.IService;
 import java.util.List;
 
 public interface IShopService extends IService<Shop> {
-    List<Integer> getAccountId();
+    int getAccountId(String name);
+    List<String> getNameAccount();
 }

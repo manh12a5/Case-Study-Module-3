@@ -50,8 +50,8 @@ public class ShopServlet extends HttpServlet {
     private void showAllShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("shop/view.jsp");
         List<Shop> shopList = shopService.findAll();
-        List<Integer> accountId = shopService.getAccountId();
-        request.setAttribute("accountId", accountId);
+        List<String> nameAccount = shopService.getNameAccount();
+        request.setAttribute("nameAccount", nameAccount);
         request.setAttribute("shop", shopList);
         requestDispatcher.forward(request, response);
     }
@@ -68,7 +68,8 @@ public class ShopServlet extends HttpServlet {
         String name = request.getParameter("nameShop");
         String address = request.getParameter("addressShop");
         String phone = request.getParameter("phoneNumberShop");
-        int accountId = Integer.parseInt(request.getParameter("accountIdShop"));
+        String nameAccount = request.getParameter("nameAccount");
+        int accountId = shopService.getAccountId(nameAccount);
         Shop shop = new Shop(name, address, phone, accountId);
         shopService.insert(shop);
         response.sendRedirect("/shop");
