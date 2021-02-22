@@ -41,7 +41,7 @@
         <div id="signup-row" class="row justify-content-center align-items-center">
             <div id="signup-column" class="col-md-6">
                 <div id="signup-box" class="col-md-12">
-                    <form id="signup-form" class="form" action="/register" method="post">
+                    <form id="signup-form" class="form"  method="post">
                         <h3 class="text-center text-info">Sign up</h3>
                         <div class="form-group">
                             <label for="fullname" class="text-info">Full name:</label><br>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label for="birthday" class="text-info">Birthday:</label><br>
-                            <input type="date" name="birthday" id="birthday" class="form-control">
+                            <input type="text" name="birthday" id="birthday" class="form-control" placeholder="dd/mm/yyyy" >
                         </div>
                         <div class="form-group">
                             <label for="email" class="text-info">Email:</label><br>

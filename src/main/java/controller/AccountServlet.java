@@ -14,13 +14,54 @@ import java.io.IOException;
 
 @WebServlet(name = "AccountServlet", value = "/login")
 public class AccountServlet extends HttpServlet {
+    private final IAccountService accountService = new AccountService();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IAccountService accountService = new AccountService();
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "register":
+                registerAccount(request,response);
+                break;
+            default:
+                loginAccount(request,response);
+
+        }
+
+    }
+
+    private void registerAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String fullName = request.getParameter("fullname");
+        String birthday = request.getParameter("birthday");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String re_password = request.getParameter("re-password");
+        String phone_number = request.getParameter("phone-number");
+        String address = request.getParameter("address");
+        if(!password.equals(re_password)){
+            request.setAttribute("mess","Password does not match");
+            request.getRequestDispatcher("product/login.jsp").forward(request,response);
+        } else{
+            Account account = accountService.checkAccountExist(email);
+            if( account== null){ // chua co => duoc dang ky
+                accountService.registerAccount(fullName,email,password,birthday,phone_number,address);
+                response.sendRedirect("/login");
+            } else {
+               request.setAttribute("mess","This email has already been registered");
+               request.getRequestDispatcher("product/login.jsp").forward(request,response);
+            }
+        }
+
+    }
+
+    private void loginAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("username");
         String password = request.getParameter("password");
         Account account = accountService.login(email, password);
         if (account == null) {
-            request.setAttribute("mess","Wrong user or password!");
+            request.setAttribute("mess", "Wrong user or password!");
             request.getRequestDispatcher("product/login.jsp").forward(request, response);
         } else {
             response.sendRedirect("/products");
@@ -28,7 +69,27 @@ public class AccountServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/login.jsp");
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "register":
+                showRegisterForm(request,response);
+                break;
+            default:
+                showLoginForm(request,response);
+        }
+
+    }
+
+    private void showRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/register.jsp");
         requestDispatcher.forward(request,response);
+    }
+
+    private void showLoginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/login.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

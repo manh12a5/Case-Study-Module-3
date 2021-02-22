@@ -52,7 +52,7 @@
                             <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                         </div>
                         <div id="register-link" class="text-right">
-                            <a href="#" class="text-info">Register here</a>
+                            <a href="/login?action=register" class="text-info">Register here</a>
                         </div>
                     </form>
                 </div>
