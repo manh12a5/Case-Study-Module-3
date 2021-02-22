@@ -57,7 +57,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product findById(int id) {
-        String showProduct = "select * from product where id = ?";
+        String showProduct = "select * from product where product_id = ?";
         Product products = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(showProduct);
@@ -79,7 +79,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void edit(Product product) {
-        String editSQL = "update product set nameProduct = ?, price = ?, amountProduct = ?, colorProduct = ?, description = ? where id = ?";
+        String editSQL = "update product set nameProduct = ?, price = ?, amountProduct = ?, colorProduct = ?, description = ? where product_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(editSQL);
             preparedStatement.setString(1, product.getName());
@@ -88,6 +88,7 @@ public class ProductService implements IProductService {
             preparedStatement.setString(4, product.getColor());
             preparedStatement.setString(5, product.getDescription());
             preparedStatement.setInt(6, product.getId());
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,6 +104,29 @@ public class ProductService implements IProductService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Product> findByName(String name) {
+        List<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from product where nameProduct like ?");
+            name = name + "%";
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("product_id");
+                String nameProduct = resultSet.getString("nameProduct");
+                int price = resultSet.getInt("price");
+                int amount = resultSet.getInt("amountProduct");
+                String color = resultSet.getString("colorProduct");
+                String description = resultSet.getString("description");
+                products.add(new Product(id, nameProduct, price, amount, color, description));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 
 }

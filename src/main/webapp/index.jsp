@@ -1,319 +1,105 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-
+<html lang="en-US">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Simple House Template</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
-  <link href="css/templatemo-style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moschino | Minimalist Free HTML Portfolio by WowThemes.net</title>
+    <link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+    <link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+    <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 </head>
-<!--
-
-Simple House
-
-https://templatemo.com/tm-539-simple-house
-
--->
-<body>
-
-<div class="container">
-  <!-- Top box -->
-  <!-- Logo & Site Name -->
-  <div class="placeholder">
-    <div class="parallax-window" data-parallax="scroll" data-image-src="img/simple-house-01.jpg">
-      <div class="tm-header">
-        <div class="row tm-header-inner">
-          <div class="col-md-6 col-12">
-            <img src="img/simple-house-logo.png" alt="Logo" class="tm-site-logo" />
-            <div class="tm-site-text-box">
-              <h1 class="tm-site-title">Simple House</h1>
-              <h6 class="tm-site-description">new restaurant template</h6>
+<body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
+<div id="page">
+    <div class="container">
+        <header id="masthead" class="site-header">
+            <div class="site-branding">
+                <h1 class="site-title"><a href="index.html" rel="home">Moschino</a></h1>
+                <h2 class="site-description">Minimalist Portfolio HTML Template</h2>
             </div>
-          </div>
-          <nav class="col-md-6 col-12 tm-nav">
-            <ul class="tm-nav-ul">
-              <li class="tm-nav-li"><a href="index.html" class="tm-nav-link active">Home</a></li>
-              <li class="tm-nav-li"><a href="about.html" class="tm-nav-link">About</a></li>
-              <li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contact</a></li>
-            </ul>
-          </nav>
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle">Menu</button>
+                <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+                <div class="menu-menu-1-container">
+                    <ul id="menu-menu-1" class="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="elements.html">Elements</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="portfolio-item.html">Portfolio Item</a></li>
+                                <li><a href="blog-single.html">Blog Article</a></li>
+                                <li><a href="shop-single.html">Shop Item</a></li>
+                                <li><a href="portfolio-category.html">Portfolio Category</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- #masthead -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area column full">
+                <main id="main" class="site-main">
+                    <div class="grid portfoliogrid">
+
+                        <table class="table">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Amount</th>
+                                <th>Color</th>
+                                <th>Description</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            <c:forEach var="product" items="${product}">
+                                <tr>
+                                    <td>${product.getId()}</td>
+                                    <td>${product.getName()}</td>
+                                    <td>${product.getPrice()}</td>
+                                    <td>${product.getAmount()}</td>
+                                    <td>${product.getColor()}</td>
+                                    <td>${product.getDescription()}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+
+                    </div>
+                    <!-- .grid -->
+
+                    <br/>
+
+                </main>
+                <!-- #main -->
+            </div>
+            <!-- #primary -->
         </div>
-      </div>
+        <!-- #content -->
     </div>
-  </div>
-
-  <main>
-    <header class="row tm-welcome-section">
-      <h2 class="col-12 text-center tm-section-title">Quản Lý Bàn Hàng Điện Thoại</h2>
-      <p class="col-12 text-center">Chuyên cung cấp các sản phẩn điện thoại chính hãng bảo hành 1 đổi 1 trong 30 ngày đầu nếu lỗi do nhà sản xuất.</p>
-    </header>
-
-    <div class="tm-paging-links">
-      <nav>
-        <ul>
-          <li class="tm-paging-item"><a href="#" class="tm-paging-link active">Pizza</a></li>
-          <li class="tm-paging-item"><a href="#" class="tm-paging-link">Salad</a></li>
-          <li class="tm-paging-item"><a href="#" class="tm-paging-link">Noodle</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <!-- Gallery -->
-    <div class="row tm-gallery">
-      <!-- gallery page 1 -->
-      <div id="tm-gallery-page-pizza" class="tm-gallery-page">
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/01.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Fusce dictum finibus</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$45 / $55</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/02.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Aliquam sagittis</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$65 / $70</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/03.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Sed varius turpis</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$30.50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/04.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Aliquam sagittis</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$25.50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/05.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Maecenas eget justo</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$80.25</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/06.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Quisque et felis eros</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$20 / $40 / $60</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/07.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Sed ultricies dui</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$94</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/08.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Donec porta consequat</h4>
-              <p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
-              <p class="tm-gallery-price">$15</p>
-            </figcaption>
-          </figure>
-        </article>
-      </div> <!-- gallery page 1 -->
-
-      <!-- gallery page 2 -->
-      <div id="tm-gallery-page-salad" class="tm-gallery-page hidden">
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/04.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Salad Menu One</h4>
-              <p class="tm-gallery-description">Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique</p>
-              <p class="tm-gallery-price">$25</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/03.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Second Title Salad</h4>
-              <p class="tm-gallery-description">Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique</p>
-              <p class="tm-gallery-price">$30</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/05.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Third Salad Item</h4>
-              <p class="tm-gallery-description">Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique</p>
-              <p class="tm-gallery-price">$45</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/01.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Superior Salad</h4>
-              <p class="tm-gallery-description">Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique</p>
-              <p class="tm-gallery-price">$50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/08.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Sed ultricies dui</h4>
-              <p class="tm-gallery-description">Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique</p>
-              <p class="tm-gallery-price">$55 / $60</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/07.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Maecenas eget justo</h4>
-              <p class="tm-gallery-description">Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique</p>
-              <p class="tm-gallery-price">$75</p>
-            </figcaption>
-          </figure>
-        </article>
-      </div> <!-- gallery page 2 -->
-
-      <!-- gallery page 3 -->
-      <div id="tm-gallery-page-noodle" class="tm-gallery-page hidden">
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/08.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Noodle One</h4>
-              <p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              <p class="tm-gallery-price">$12.50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/07.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Noodle Second</h4>
-              <p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              <p class="tm-gallery-price">$15.50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/06.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Third Soft Noodle</h4>
-              <p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              <p class="tm-gallery-price">$20.50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/05.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Aliquam sagittis</h4>
-              <p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              <p class="tm-gallery-price">$30.25</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/04.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Maecenas eget justo</h4>
-              <p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              <p class="tm-gallery-price">$35.50</p>
-            </figcaption>
-          </figure>
-        </article>
-        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-          <figure>
-            <img src="img/gallery/03.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-            <figcaption>
-              <h4 class="tm-gallery-title">Quisque et felis eros</h4>
-              <p class="tm-gallery-description">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              <p class="tm-gallery-price">$40.50</p>
-            </figcaption>
-          </figure>
-        </article>
-
-      </div> <!-- gallery page 3 -->
-    </div>
-    <div class="tm-section tm-container-inner">
-      <div class="row">
-        <div class="col-md-6">
-          <figure class="tm-description-figure">
-            <img src="img/img-01.jpg" alt="Image" class="img-fluid" />
-          </figure>
+    <!-- .container -->
+    <footer id="colophon" class="site-footer">
+        <div class="container">
+            <div class="site-info">
+                <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+                <a target="blank" href="https://www.wowthemes.net/">&copy; Moschino - Free HTML Template by WowThemes.net</a>
+            </div>
         </div>
-        <div class="col-md-6">
-          <div class="tm-description-box">
-            <h4 class="tm-gallery-title">Maecenas nulla neque</h4>
-            <p class="tm-mb-45">Redistributing this template as a downloadable ZIP file on any template collection site is strictly prohibited. You will need to <a rel="nofollow" href="https://templatemo.com/contact">talk to us</a> for additional permissions about our templates. Thank you.</p>
-            <a href="about.html" class="tm-btn tm-btn-default tm-right">Read More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer class="tm-footer text-center">
-    <p>Copyright &copy; 2020 Simple House
-
-      | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
-  </footer>
+    </footer>
+    <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/parallax.min.js"></script>
-<script>
-  $(document).ready(function(){
-    // Handle click on paging links
-    $('.tm-paging-link').click(function(e){
-      e.preventDefault();
-
-      var page = $(this).text().toLowerCase();
-      $('.tm-gallery-page').addClass('hidden');
-      $('#tm-gallery-page-' + page).removeClass('hidden');
-      $('.tm-paging-link').removeClass('active');
-      $(this).addClass("active");
-    });
-  });
-</script>
+<!-- #page -->
+<script src='js/jquery.js'></script>
+<script src='js/plugins.js'></script>
+<script src='js/scripts.js'></script>
+<script src='js/masonry.pkgd.min.js'></script>
 </body>
 </html>
