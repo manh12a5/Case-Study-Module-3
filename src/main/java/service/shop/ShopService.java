@@ -38,7 +38,7 @@ public class ShopService implements IShopService {
     public Shop findById(int id) {
         Shop shop = null;
         try {
-            PreparedStatement p = connection.prepareStatement("select * from product where id=?");
+            PreparedStatement p = connection.prepareStatement("select * from shop where id=?");
             p.setInt(1, id);
             ResultSet resultSet = p.executeQuery();
             while (resultSet.next()) {
@@ -61,7 +61,13 @@ public class ShopService implements IShopService {
 
     @Override
     public void delete(int id) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from shop where shop_id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
