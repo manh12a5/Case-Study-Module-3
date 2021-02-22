@@ -75,6 +75,12 @@
                 </td>
             </tr>
             <tr>
+                <th>Image (SRC):</th>
+                <td>
+                    <input type="text" name="image" size="45" value="${product.getImage()}"/>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="Edit"/>
                 </td>

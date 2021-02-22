@@ -14,4 +14,5 @@ public interface IService<E> {
 
     void edit(E e);
 
+    List<E> findByName(String name);
 }

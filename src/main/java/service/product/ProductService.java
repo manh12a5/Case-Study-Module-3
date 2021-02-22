@@ -29,7 +29,8 @@ public class ProductService implements IProductService {
                 int amount = resultSet.getInt("amountProduct");
                 String color = resultSet.getString("colorProduct");
                 String description = resultSet.getString("description");
-                products.add(new Product(id, name, price, amount, color, description));
+                String image = resultSet.getString("image");
+                products.add(new Product(id, name, price, amount, color, description, image));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,7 +40,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void insert(Product product) {
-        String insertSQL = "insert into product (nameProduct, price, amountProduct, colorProduct, description, manufacturer_id, shop_id) values (?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "insert into product (nameProduct, price, amountProduct, colorProduct, description, manufacturer_id, shop_id, image) values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setString(1, product.getName());
@@ -49,6 +50,7 @@ public class ProductService implements IProductService {
             preparedStatement.setString(5, product.getDescription());
             preparedStatement.setInt(6, product.getManufacturer());
             preparedStatement.setInt(7, product.getShop());
+            preparedStatement.setString(8, product.getImage());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +59,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product findById(int id) {
-        String showProduct = "select * from product where id = ?";
+        String showProduct = "select * from product where product_id = ?";
         Product products = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(showProduct);
@@ -69,7 +71,8 @@ public class ProductService implements IProductService {
                 int amount = resultSet.getInt("amountProduct");
                 String color = resultSet.getString("colorProduct");
                 String description = resultSet.getString("description");
-                products = new Product(id, name, price, amount, color, description);
+                String image = resultSet.getString("image");
+                products = new Product(id, name, price, amount, color, description, image);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,7 +82,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void edit(Product product) {
-        String editSQL = "update product set nameProduct = ?, price = ?, amountProduct = ?, colorProduct = ?, description = ? where id = ?";
+        String editSQL = "update product set nameProduct = ?, price = ?, amountProduct = ?, colorProduct = ?, description = ?, image = ? where product_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(editSQL);
             preparedStatement.setString(1, product.getName());
@@ -87,7 +90,9 @@ public class ProductService implements IProductService {
             preparedStatement.setInt(3, product.getAmount());
             preparedStatement.setString(4, product.getColor());
             preparedStatement.setString(5, product.getDescription());
-            preparedStatement.setInt(6, product.getId());
+            preparedStatement.setString(6, product.getImage());
+            preparedStatement.setInt(7, product.getId());
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,6 +108,31 @@ public class ProductService implements IProductService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Product> findByName(String name) {
+        String searchName = "select * from product where nameProduct like ?";
+        List<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(searchName);
+            name = name + "%";
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("product_id");
+                String nameProduct = resultSet.getString("nameProduct");
+                int price = resultSet.getInt("price");
+                int amount = resultSet.getInt("amountProduct");
+                String color = resultSet.getString("colorProduct");
+                String description = resultSet.getString("description");
+                String image = resultSet.getString("image");
+                products.add(new Product(id, nameProduct, price, amount, color, description, image));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 
 }

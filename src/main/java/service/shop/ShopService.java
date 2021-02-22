@@ -52,4 +52,8 @@ public class ShopService implements IShopService {
 
     }
 
+    @Override
+    public List<Shop> findByName(String name) {
+        return null;
+    }
 }

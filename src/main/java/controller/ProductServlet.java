@@ -44,6 +44,8 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request, response);
                 break;
+            case "search":
+                searchNameProduct(request, response);
         }
     }
 
@@ -86,6 +88,14 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    private void searchNameProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        List<Product> products = productService.findByName(name);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/view.jsp");
+        request.setAttribute("product", products);
+        requestDispatcher.forward(request, response);
+    }
+
     //Các phương thức Post
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,7 +121,8 @@ public class ProductServlet extends HttpServlet {
         String description = request.getParameter("description");
         int manufacturer = Integer.parseInt(request.getParameter("manufacturer"));
         int shop = Integer.parseInt(request.getParameter("shop"));
-        Product product = new Product(name, price, amount, color, description, manufacturer, shop);
+        String image = request.getParameter("image");
+        Product product = new Product(name, price, amount, color, description, manufacturer, shop, image);
         productService.insert(product);
         try {
             response.sendRedirect("/products");
@@ -121,6 +132,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
         int amount = Integer.parseInt(request.getParameter("amount"));
@@ -128,7 +140,8 @@ public class ProductServlet extends HttpServlet {
         String description = request.getParameter("description");
         int manufacturer = Integer.parseInt(request.getParameter("manufacturer"));
         int shop = Integer.parseInt(request.getParameter("shop"));
-        Product product = new Product(name, price, amount, color, description, manufacturer, shop);
+        String image = request.getParameter("image");
+        Product product = new Product(id, name, price, amount, color, description, manufacturer, shop, image);
         productService.edit(product);
         try {
             response.sendRedirect("/products");

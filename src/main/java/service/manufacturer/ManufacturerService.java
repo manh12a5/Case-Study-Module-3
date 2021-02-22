@@ -58,4 +58,8 @@ public class ManufacturerService implements IManufacturerService {
 
     }
 
+    @Override
+    public List<Manufacturer> findByName(String name) {
+        return null;
+    }
 }
