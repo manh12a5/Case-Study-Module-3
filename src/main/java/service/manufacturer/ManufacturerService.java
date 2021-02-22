@@ -38,6 +38,18 @@ public class ManufacturerService implements IManufacturerService {
 
     @Override
     public void insert(Manufacturer manufacturer) {
+        String insertSQL = "insert into manufacturer (nameManufacturer) values (?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement.setString(1, manufacturer.getName());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void edit(Manufacturer manufacturer) {
 
     }
 

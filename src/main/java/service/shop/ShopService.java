@@ -1,6 +1,5 @@
 package service.shop;
 
-import model.Product;
 import model.Shop;
 import service.SingletonConnection;
 
@@ -40,6 +39,11 @@ public class ShopService implements IShopService {
 
     @Override
     public void insert(Shop shop) {
+
+    }
+
+    @Override
+    public void edit(Shop shop) {
 
     }
 
