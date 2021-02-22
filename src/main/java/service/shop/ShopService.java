@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShopService implements IShopService {
@@ -58,12 +57,13 @@ public class ShopService implements IShopService {
     @Override
     public void insert(Shop shop) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into shop values (?, ?, ?, ?, ?)");
-            preparedStatement.setInt(1, shop.getId());
-            preparedStatement.setString(2, shop.getName());
-            preparedStatement.setString(3, shop.getAddress());
-            preparedStatement.setString(4, shop.getPhoneNumber());
-            preparedStatement.setInt(5, shop.getAccountId());
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "insert into shop (nameshop, address, phonenumber, account_id) values (?, ?, ?, ?)");
+
+            preparedStatement.setString(1, shop.getName());
+            preparedStatement.setString(2, shop.getAddress());
+            preparedStatement.setString(3, shop.getPhoneNumber());
+            preparedStatement.setInt(4, shop.getAccountId());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

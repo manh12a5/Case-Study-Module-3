@@ -65,12 +65,11 @@ public class ShopServlet extends HttpServlet {
     }
 
     private void createNewShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("idShop"));
         String name = request.getParameter("nameShop");
         String address = request.getParameter("addressShop");
         String phone = request.getParameter("phoneNumberShop");
         int accountId = Integer.parseInt(request.getParameter("accountIdShop"));
-        Shop shop = new Shop(id, name, address, phone, accountId);
+        Shop shop = new Shop(name, address, phone, accountId);
         shopService.insert(shop);
         response.sendRedirect("/shop");
     }

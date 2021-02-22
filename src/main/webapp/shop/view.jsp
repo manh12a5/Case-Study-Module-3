@@ -53,12 +53,6 @@
                 <form method="post">
                     <table border="1" cellpadding="5">
                         <tr>
-                            <th>ID:</th>
-                            <td>
-                                <input type="text" name="idShop" size="45"/>
-                            </td>
-                        </tr>
-                        <tr>
                             <th>Name:</th>
                             <td>
                                 <input type="text" name="nameShop" size="45"/>

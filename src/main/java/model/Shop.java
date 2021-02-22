@@ -24,6 +24,13 @@ public class Shop {
         this.phoneNumber = phoneNumber;
     }
 
+    public Shop(String name, String address, String phoneNumber, int accountId) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.accountId = accountId;
+    }
+
     public Shop(int id, String name, String address, String phoneNumber, int accountId) {
         this.id = id;
         this.name = name;
