@@ -68,6 +68,9 @@
                                     <li><a href="/products">Product</a></li>
                                     <li><a href="">Shop</a> </li>
                                     <c:if test="${sessionScope.acc != null}">
+                                        <li>
+                                            <a href="/products">Hello ${sessionScope.acc.fullname}</a>
+                                        </li>
                                         <li><a href="/login?action=logout">Log Out</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.acc == null}">
