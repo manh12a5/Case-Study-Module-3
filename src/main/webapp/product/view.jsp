@@ -69,7 +69,10 @@
                 </li>
                 <c:if test="${sessionScope.acc != null}">
                     <li>
-                        <a class="nav-link active" aria-current="page" href="/login">Log out</a>
+                        <a class="nav-link active " aria-current="page" >Hello ${sessionScope.acc.fullname}</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/login?action=logout">Log out</a>
                     </li>
                 </c:if>
                 <c:if test="${sessionScope.acc == null}">

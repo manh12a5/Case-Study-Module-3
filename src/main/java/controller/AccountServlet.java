@@ -80,10 +80,19 @@ public class AccountServlet extends HttpServlet {
             case "register":
                 showRegisterForm(request,response);
                 break;
+            case "logout":
+                logoutAccount(request,response);
+                break;
             default:
                 showLoginForm(request,response);
         }
 
+    }
+
+    private void logoutAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute("acc");
+        response.sendRedirect("/products");
     }
 
     private void showRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
