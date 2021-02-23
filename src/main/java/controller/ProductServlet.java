@@ -35,6 +35,9 @@ public class ProductServlet extends HttpServlet {
             case "":
                 showAllProducts(request, response);
                 break;
+            case "manager":
+                showManagerProduct(request, response);
+                break;
             case "create":
                 showCreateProduct(request, response);
                 break;
@@ -46,11 +49,19 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "search":
                 searchNameProduct(request, response);
+                break;
         }
     }
 
     private void showAllProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/view.jsp");
+        List<Product> productList = productService.findAll();
+        request.setAttribute("product", productList);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showManagerProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/manager.jsp");
         List<Product> productList = productService.findAll();
         request.setAttribute("product", productList);
         requestDispatcher.forward(request, response);
@@ -89,7 +100,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void searchNameProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter("search");
         List<Product> products = productService.findByName(name);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/view.jsp");
         request.setAttribute("product", products);

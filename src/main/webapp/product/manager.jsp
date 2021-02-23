@@ -119,6 +119,11 @@
             <div class="col-md-12">
                 <div class="titlepage">
                     <h2>Các Sản Phẩm Điện Thoại</h2>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/products?action=create">
+                            <button class="btn btn-primary me-md-2" type="button">Add New Product</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,12 +139,19 @@
                             <h3><strong class="red">${product.getPrice()}</strong> ₫</h3>
                             <span>${product.getName()}</span>
                             <p>${product.getDescription()}</p>
-                           <div>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                        </div>
+                            <div>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                            </div>
+                            <br>
+                            <a href="/products?action=edit&id=${product.getId()}">
+                                <button type="button" class="btn btn-danger">Edit</button>
+                            </a>
+                            <a href="/products?action=delete&id=${product.getId()}">
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </a>
                         </div>
                     </div>
                 </c:forEach>
@@ -156,7 +168,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Điện thoại phổ thông</h2>
+                    <h2>Điện thoai phổ thông</h2>
                 </div>
             </div>
         </div>
