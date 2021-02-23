@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "AccountServlet", value = "/login")
@@ -64,6 +65,8 @@ public class AccountServlet extends HttpServlet {
             request.setAttribute("mess", "Wrong user or password!");
             request.getRequestDispatcher("product/login.jsp").forward(request, response);
         } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("acc",account);
             response.sendRedirect("/products");
         }
     }

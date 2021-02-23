@@ -53,7 +53,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.jsp">
-            <h2 style="color: red">Product      </h2>
+            <h2 style="color: red">Product </h2>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,14 +65,22 @@
                     <a class="nav-link active" aria-current="page" href="/products">Home</a>
                 </li>
                 <li>
-                    <a class="nav-link active" aria-current="page" href="">Log In</a>
-                </li>
-                <li>
                     <a class="nav-link active" aria-current="page" href="about.html">About Us</a>
                 </li>
+                <c:if test="${sessionScope.acc != null}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/login">Log out</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.acc == null}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/login">Log In</a>
+                    </li>
+                </c:if>
             </ul>
             <form class="d-flex">
-                <input href="/products?action=search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input href="/products?action=search" class="form-control me-2" type="search" placeholder="Search"
+                       aria-label="Search">
                 <button style="height: 40px" class="btn btn-primary me-md-2" type="submit">Search</button>
             </form>
         </div>
@@ -83,17 +91,20 @@
 <section class="slider_section">
     <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
         <div class="carousel-inner">
-<%--            Ảnh banner 1--%>
+            <%--            Ảnh banner 1--%>
             <div class="carousel-item active">
-                <img style="width: 1600px; height: 500px" class="first-slide" src="https://cdn.tgdd.vn/2021/02/banner/S21-800-300-800x300-4.png" alt="First slide">
+                <img style="width: 1600px; height: 500px" class="first-slide"
+                     src="https://cdn.tgdd.vn/2021/02/banner/S21-800-300-800x300-4.png" alt="First slide">
             </div>
-<%--            Ảnh banner 2--%>
+            <%--            Ảnh banner 2--%>
             <div class="carousel-item">
-                <img style="width: 1600px; height: 500px" class="second-slide" src="https://cdn.tgdd.vn/2021/02/banner/tet-iphone12-800-300-800x300-1.png" alt="Second slide">
+                <img style="width: 1600px; height: 500px" class="second-slide"
+                     src="https://cdn.tgdd.vn/2021/02/banner/tet-iphone12-800-300-800x300-1.png" alt="Second slide">
             </div>
-    <%--            Ảnh banner 3--%>
+            <%--            Ảnh banner 3--%>
             <div class="carousel-item">
-                <img style="width: 1600px; height: 500px" class="third-slide" src="https://cdn.tgdd.vn/2021/02/banner/800-300-800x300-14.png" alt="Third slide">
+                <img style="width: 1600px; height: 500px" class="third-slide"
+                     src="https://cdn.tgdd.vn/2021/02/banner/800-300-800x300-14.png" alt="Third slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -138,10 +149,10 @@
                                 <%--                            <i><img src="images/star.png"/></i>--%>
                                 <%--                            <br>--%>
                             <a href="/products?action=edit&id=${product.getId()}">
-                                <button type="button" class="btn btn-danger" >Edit</button>
+                                <button type="button" class="btn btn-danger">Edit</button>
                             </a>
                             <a href="/products?action=delete&id=${product.getId()}">
-                                <button type="button" class="btn btn-danger" >Delete</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
                             </a>
                         </div>
                     </div>
