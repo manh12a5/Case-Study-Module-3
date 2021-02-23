@@ -70,7 +70,7 @@
                 <%-- phân quyền (nếu là user thì trên đoạn này không hiện gì, nếu là shop thì hiện ra thanh quản lý sản phẩ   --%>
                 <c:if test="${sessionScope.acc.role==1}">
                     <li>
-                        <a class="nav-link active" aria-current="page" href="">ManagerAccount</a>
+                        <a class="nav-link active" aria-current="page" href="/user">ManagerAccount</a>
                     </li>
                 </c:if>
                 <c:if test="${sessionScope.acc.role==2}">
