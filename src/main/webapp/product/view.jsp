@@ -67,12 +67,29 @@
                 <li>
                     <a class="nav-link active" aria-current="page" href="">Shop</a>
                 </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Log In</a>
-                </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Log Out</a>
-                </li>
+                <%-- phân quyền (nếu là user thì trên đoạn này không hiện gì, nếu là shop thì hiện ra thanh quản lý sản phẩ   --%>
+                <c:if test="${sessionScope.acc.role==1}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="">ManagerAccount</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.acc.role==2}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/products?action=manager">ManagerProduct</a>
+                    </li>
+                </c:if>
+
+                <c:if test="${sessionScope.acc != null}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/login?action=logout">Log Out</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.acc == null}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/login">Log In</a>
+                    </li>
+                </c:if>
+
             </ul>
             <form class="d-flex">
                 <input name="action" hidden value="search">
@@ -134,12 +151,12 @@
                             <h3><strong class="red">${product.getPrice()}</strong> ₫</h3>
                             <span>${product.getName()}</span>
                             <p>${product.getDescription()}</p>
-                           <div>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                        </div>
+                            <div>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                            </div>
                         </div>
                     </div>
                 </c:forEach>

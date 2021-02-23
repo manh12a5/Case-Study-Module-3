@@ -64,15 +64,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="">Home</a>
                 </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Shop</a>
-                </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Log In</a>
-                </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Log Out</a>
-                </li>
+                <c:if test="${sessionScope.acc != null}">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/login?action=logout">Log Out</a>
+                    </li>
+                </c:if>
             </ul>
             <form class="d-flex">
                 <input name="action" hidden value="search">
