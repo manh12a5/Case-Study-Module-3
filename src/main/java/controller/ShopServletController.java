@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "ShopServlet", urlPatterns = "/shop")
-public class ShopServlet extends HttpServlet {
+public class ShopServletController extends HttpServlet {
     IShopService shopService = new ShopService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -23,11 +23,14 @@ public class ShopServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "":
+            case "create":
                 createNewShop(request, response);
                 break;
             case "delete":
                 deleteShop(request, response);
+                break;
+            case "edit":
+                editProduct(request, response);
                 break;
         }
     }
@@ -40,8 +43,6 @@ public class ShopServlet extends HttpServlet {
         switch (action) {
             case "":
                 showAllShop(request, response);
-                break;
-            case "edit":
                 break;
 
         }
@@ -64,6 +65,8 @@ public class ShopServlet extends HttpServlet {
         response.sendRedirect("/shop");
     }
 
+
+
     private void createNewShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("nameShop");
         String address = request.getParameter("addressShop");
@@ -74,4 +77,16 @@ public class ShopServlet extends HttpServlet {
         shopService.insert(shop);
         response.sendRedirect("/shop");
     }
+
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("idS"));
+        String name = request.getParameter("nameS");
+        String address = request.getParameter("addressS");
+        String phone = request.getParameter("phoneNumberS");
+        int id2 = Integer.parseInt(request.getParameter("account_id"));
+        Shop shop = new Shop(id, name, address, phone,id2);
+        shopService.update(shop);
+        response.sendRedirect("/shop");
+    }
+
 }

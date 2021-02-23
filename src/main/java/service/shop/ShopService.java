@@ -1,5 +1,6 @@
 package service.shop;
 
+import model.Product;
 import model.Shop;
 import service.SingletonConnection;
 
@@ -114,4 +115,18 @@ public class ShopService implements IShopService {
         return nameAccount;
     }
 
+    @Override
+    public void update(Shop shop) {
+        try {
+            PreparedStatement p = connection.prepareStatement("update shop set nameShop = ?, address= ?, phoneNumber = ?, account_id = ? where shop_id =?");
+            p.setInt(5,shop.getId());
+            p.setString(1, shop.getName());
+            p.setString(2, shop.getAddress());
+            p.setString(3, shop.getPhoneNumber());
+            p.setInt(4,shop.getAccountId());
+            p.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
