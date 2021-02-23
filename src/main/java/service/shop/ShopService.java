@@ -92,6 +92,11 @@ public class ShopService implements IShopService {
     }
 
     @Override
+    public void edit(Shop shop) {
+
+    }
+
+    @Override
     public int getAccountId(String name) {
         int id = 0;
         ResultSet resultSet = null;
