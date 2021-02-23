@@ -1,6 +1,5 @@
 package service.shop;
 
-import model.Product;
 import model.Shop;
 import service.SingletonConnection;
 
@@ -44,8 +43,17 @@ public class ShopService implements IShopService {
     }
 
     @Override
+    public void edit(Shop shop) {
+
+    }
+
+    @Override
     public void delete(int id) {
 
     }
 
+    @Override
+    public List<Shop> findByName(String name) {
+        return null;
+    }
 }

@@ -12,4 +12,7 @@ public interface IService<E> {
 
     void delete(int id);
 
+    void edit(E e);
+
+    List<E> findByName(String name);
 }
