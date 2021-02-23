@@ -79,11 +79,11 @@ public class ShopServletController extends HttpServlet {
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("idS"));
-        String name = request.getParameter("nameS");
-        String address = request.getParameter("addressS");
-        String phone = request.getParameter("phoneNumberS");
-        int id2 = Integer.parseInt(request.getParameter("account_id"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phoneNumber");
+        int id2 = Integer.parseInt(request.getParameter("accountId"));
         Shop shop = new Shop(id, name, address, phone,id2);
         shopService.update(shop);
         response.sendRedirect("/shop");
