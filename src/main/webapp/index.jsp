@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +67,12 @@
                                     <li class="active"> <a href="">Home</a> </li>
                                     <li><a href="/products">Product</a></li>
                                     <li><a href="">Shop</a> </li>
-                                    <li><a href="">Log In</a></li>
-                                    <li><a href="">Log Out</a></li>
+                                    <c:if test="${sessionScope.acc != null}">
+                                        <li><a href="/login?action=logout">Log Out</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.acc == null}">
+                                    <li><a href="/login">Log In</a></li>
+                                    </c:if>
                                 </ul>
                             </nav>
                         </div>

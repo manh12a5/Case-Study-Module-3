@@ -67,7 +67,7 @@ public class AccountServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("acc",account);
-            response.sendRedirect("/products");
+            response.sendRedirect("/index.jsp");
         }
     }
 
@@ -92,7 +92,7 @@ public class AccountServlet extends HttpServlet {
     private void logoutAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("acc");
-        response.sendRedirect("/products");
+        response.sendRedirect("/index.jsp");
     }
 
     private void showRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
