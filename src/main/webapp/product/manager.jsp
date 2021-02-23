@@ -46,14 +46,13 @@
 <!-- loader  -->
 <div class="loader_bg">
     <div class="loader"><img src="images/loading.gif" alt="#"/></div>
-<<<<<<< HEAD
 </div>
 <!-- end loader -->
 
 <!-- header -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.jsp">
+        <a class="navbar-brand" href="/products">
             <h2 style="color: red">Product </h2>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -63,28 +62,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/products">Home</a>
+                    <a class="nav-link active" aria-current="page" href="">Home</a>
                 </li>
                 <li>
-                    <a class="nav-link active" aria-current="page" href="about.html">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="">Shop</a>
                 </li>
-                <c:if test="${sessionScope.acc != null}">
-                    <li>
-                        <a class="nav-link active " aria-current="page" >Hello ${sessionScope.acc.fullname}</a>
-                    </li>
-                    <li>
-                        <a class="nav-link active" aria-current="page" href="/login?action=logout">Log out</a>
-                    </li>
-                </c:if>
-                <c:if test="${sessionScope.acc == null}">
-                    <li>
-                        <a class="nav-link active" aria-current="page" href="/login">Log In</a>
-                    </li>
-                </c:if>
+                <li>
+                    <a class="nav-link active" aria-current="page" href="">Log In</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-current="page" href="">Log Out</a>
+                </li>
             </ul>
             <form class="d-flex">
-                <input href="/products?action=search" class="form-control me-2" type="search" placeholder="Search"
-                       aria-label="Search">
+                <input name="action" hidden value="search">
+                <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button style="height: 40px" class="btn btn-primary me-md-2" type="submit">Search</button>
             </form>
         </div>
@@ -147,11 +139,13 @@
                             <h3><strong class="red">${product.getPrice()}</strong> ₫</h3>
                             <span>${product.getName()}</span>
                             <p>${product.getDescription()}</p>
-                                <%--                            <i><img src="images/star.png"/></i>--%>
-                                <%--                            <i><img src="images/star.png"/></i>--%>
-                                <%--                            <i><img src="images/star.png"/></i>--%>
-                                <%--                            <i><img src="images/star.png"/></i>--%>
-                                <%--                            <br>--%>
+                            <div>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                                <i><img src="images/star.png"/></i>
+                            </div>
+                            <br>
                             <a href="/products?action=edit&id=${product.getId()}">
                                 <button type="button" class="btn btn-danger">Edit</button>
                             </a>
@@ -168,118 +162,13 @@
         </div>
     </div>
 </div>
-=======
-</div>
-<!-- end loader -->
-
-<!-- header -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/products">
-            <h2 style="color: red">Product </h2>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/">Home</a>
-                </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Shop</a>
-                </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Log In</a>
-                </li>
-                <li>
-                    <a class="nav-link active" aria-current="page" href="">Log Out</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input name="action" hidden value="search">
-                <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button style="height: 40px" class="btn btn-primary me-md-2" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
-<!-- end header -->
-
-<section class="slider_section">
-    <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
-        <div class="carousel-inner">
-            <%--            Ảnh banner 1--%>
-            <div class="carousel-item active">
-                <img style="width: 1600px; height: 500px" class="first-slide"
-                     src="https://cdn.tgdd.vn/2021/02/banner/S21-800-300-800x300-4.png" alt="First slide">
-            </div>
-            <%--            Ảnh banner 2--%>
-            <div class="carousel-item">
-                <img style="width: 1600px; height: 500px" class="second-slide"
-                     src="https://cdn.tgdd.vn/2021/02/banner/tet-iphone12-800-300-800x300-1.png" alt="Second slide">
-            </div>
-            <%--            Ảnh banner 3--%>
-            <div class="carousel-item">
-                <img style="width: 1600px; height: 500px" class="third-slide"
-                     src="https://cdn.tgdd.vn/2021/02/banner/800-300-800x300-14.png" alt="Third slide">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <i class='fa fa-angle-left'></i>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <i class='fa fa-angle-right'></i>
-        </a>
-    </div>
-</section>
-
-<!-- brand -->
-<div class="brand">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="titlepage">
-                    <h2>Các Sản Phẩm Điện Thoại</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="brand-bg">
-        <div class="container">
-            <div class="row">
-                <c:forEach var="product" items="${product}">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
-                        <div class="brand_box">
-                            <img src=${product.getImage()} alt="img"/>
-                            <h3><strong class="red">${product.getPrice()}</strong> ₫</h3>
-                            <span>${product.getName()}</span>
-                            <p>${product.getDescription()}</p>
-                           <div>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                            <i><img src="images/star.png"/></i>
-                        </div>
-                        </div>
-                    </div>
-                </c:forEach>
-                <div class="col-md-12">
-                    <a class="read-more">See More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="brand">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Điện thoại phổ thông</h2>
+                    <h2>Điện thoai phổ thông</h2>
                 </div>
             </div>
         </div>
@@ -361,7 +250,6 @@
         </div>
     </div>
 </div>
->>>>>>> 9cbc07c7e3bd284d9d64ff546da2cf07a6860a06
 
 <!-- end brand -->
 
