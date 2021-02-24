@@ -92,6 +92,9 @@
                         <a class="nav-link active" aria-current="page" href="/login">Log In</a>
                     </li>
                 </c:if>
+                <li>
+                    <a class="nav-link active" aria-current="page" href="/cart">Giỏ hàng</a>
+                </li>
 
             </ul>
             <form class="d-flex">
@@ -99,6 +102,7 @@
                 <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button style="height: 40px" class="btn btn-primary me-md-2" type="submit">Search</button>
             </form>
+
         </div>
     </div>
 </nav>

@@ -85,6 +85,7 @@ public class AccountServlet extends HttpServlet {
                 break;
             default:
                 showLoginForm(request,response);
+                break;
         }
 
     }
