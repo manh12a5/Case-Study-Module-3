@@ -13,21 +13,33 @@ public class Account {
     public Account() {
     }
 
-    public Account(String fullname, String email, String password, String birthday, String phoneNumber, String address, int role) {
+    public Account(String fullname, String password,String gmail,String birthday,String phoneNumber, String address,int role_id){
         this.fullname = fullname;
-        this.email = email;
-        this.password = password;
+        this.password=password;
+        this.email=gmail;
         this.birthday = birthday;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber=phoneNumber;
         this.address = address;
-        this.role = role;
+        this.role = role_id;
     }
 
-    public Account(int account_id, String fullname, String email, String password, String birthday, String phoneNumber, String address, int role) {
+
+
+//    public Account(String fullname, String email, String password, String birthday, String phoneNumber, String address, int role) {
+//        this.fullname = fullname;
+//        this.email = email;
+//        this.password = password;
+//        this.birthday = birthday;
+//        this.phoneNumber = phoneNumber;
+//        this.address = address;
+//        this.role = role;
+//    }
+
+    public Account(int account_id, String fullname, String password, String gmail, String birthday, String phoneNumber, String address, int role) {
         this.account_id = account_id;
         this.fullname = fullname;
-        this.email = email;
         this.password = password;
+        this.email=gmail;
         this.birthday = birthday;
         this.phoneNumber = phoneNumber;
         this.address = address;

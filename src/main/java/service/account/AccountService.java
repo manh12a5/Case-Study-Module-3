@@ -25,14 +25,14 @@ public class AccountService implements IAccountService {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 return new Account(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7),
-                        resultSet.getInt(8)
+                        resultSet.getInt("account_id"),
+                        resultSet.getString("fullName"),
+                        resultSet.getString("password"),
+                        resultSet.getString("gmail"),
+                        resultSet.getString("birthday"),
+                        resultSet.getString("phoneNumber"),
+                        resultSet.getString("address"),
+                        resultSet.getInt("role_id")
                 );
             }
         } catch (SQLException throwables) {
@@ -51,14 +51,14 @@ public class AccountService implements IAccountService {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 return new Account(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7),
-                        resultSet.getInt(8)
+                        resultSet.getInt("account_id"),
+                        resultSet.getString("fullName"),
+                        resultSet.getString("password"),
+                        resultSet.getString("gmail"),
+                        resultSet.getString("birthday"),
+                        resultSet.getString("phoneNumber"),
+                        resultSet.getString("address"),
+                        resultSet.getInt("role_id")
                 );
             }
         } catch (SQLException throwables) {
@@ -69,14 +69,14 @@ public class AccountService implements IAccountService {
 
     @Override
     public void registerAccount(String name, String email, String password, String birthday, String phone_number, String address) {
-        String query = "insert into account (fullName, gmail, password, birth_day, phoneNumber, address)\n" +
+        String query = "insert into account (fullName, password , gmail, birthday, phoneNumber, address)\n" +
                 "values (?,?,?,?,?,?);";
         connection = SingletonConnection.getConnection();
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, email);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, email);
             preparedStatement.setString(4, birthday);
             preparedStatement.setString(5, phone_number);
             preparedStatement.setString(6, address);
