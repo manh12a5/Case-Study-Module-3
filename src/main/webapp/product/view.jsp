@@ -65,7 +65,7 @@
                     <a class="nav-link active" aria-current="page" href="http://localhost:8080/">Home</a>
                 </li>
                 <li>
-                    <a class="nav-link active" aria-current="page" href="">Shop</a>
+                    <a class="nav-link active" aria-current="page" href="/shop?action=customerView">Shop</a>
                 </li>
                 <%-- phân quyền (nếu là user thì trên đoạn này không hiện gì, nếu là shop thì hiện ra thanh quản lý sản phẩ   --%>
                 <c:if test="${sessionScope.acc.role==1}">
@@ -81,7 +81,7 @@
 
                 <c:if test="${sessionScope.acc != null}">
                     <li>
-                        <a class="nav-link active" aria-current="page" >Hello ${sessionScope.acc.fullname}</a>
+                        <a class="nav-link active" aria-current="page"  >Hello ${sessionScope.acc.fullname}</a>
                     </li>
                     <li>
                         <a class="nav-link active" aria-current="page" href="/login?action=logout">Log Out</a>

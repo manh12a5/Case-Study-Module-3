@@ -32,6 +32,7 @@ public class ShopServletController extends HttpServlet {
             case "edit":
                 editProduct(request, response);
                 break;
+
         }
     }
 
@@ -44,8 +45,20 @@ public class ShopServletController extends HttpServlet {
             case "":
                 showAllShop(request, response);
                 break;
-
+            case "customerView":
+                CustomerShowShop(request, response);
+                break;
+            case "search":
+                searchNameProduct(request, response);
+                break;
         }
+    }
+
+    private void CustomerShowShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("shop/customerView.jsp");
+        List<Shop> shopList = shopService.findAll();
+        request.setAttribute("shop", shopList);
+        requestDispatcher.forward(request, response);
     }
 
     private void showAllShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -89,4 +102,11 @@ public class ShopServletController extends HttpServlet {
         response.sendRedirect("/shop");
     }
 
+    private void searchNameProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("shop/customerView.jsp");
+        String name = request.getParameter("search");
+        List<Shop> shopList = shopService.findByName(name);
+        request.setAttribute("shop", shopList);
+        requestDispatcher.forward(request, response);
+    }
 }
