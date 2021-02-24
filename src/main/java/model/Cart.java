@@ -35,7 +35,7 @@ public class Cart {
         this.id = id;
     }
 
-    public java.sql.Date getBeginDate() {
+    public Date getBeginDate() {
         return beginDate;
     }
 

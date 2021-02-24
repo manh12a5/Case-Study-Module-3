@@ -40,15 +40,7 @@ public class CartService implements ICartService {
 
     @Override
     public void insert(Cart cart) {
-        String insertSQL = "insert into shoppingCart (beginDate, status) values (?, ?)";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setDate(1, cart.getBeginDate());
-            preparedStatement.setString(2, cart.getStatus());
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
