@@ -1,4 +1,5 @@
 package service.shop;
+import model.Product;
 import model.Shop;
 import service.SingletonConnection;
 
@@ -157,6 +158,30 @@ public class ShopService implements IShopService {
 
     @Override
     public List<Shop> findByName(String name) {
-        return null;
+        List<Shop> shop = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from shop where nameShop like ?")){
+            name ="%" + name + "%";
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("shop_id");
+                String nameS = resultSet.getString("nameShop");
+                String address = resultSet.getString("address");
+                String phone = resultSet.getString("phoneNumber");
+                int accountId = resultSet.getInt("account_id");
+                shop.add(new Shop(id, nameS, address, phone, accountId));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return shop;
     }
 }
